@@ -1186,6 +1186,7 @@ exports.strings = function (test) {
 exports.quotes = function (test) {
 	var src = fs.readFileSync(__dirname + '/fixtures/quotes.js', 'utf8');
 	var src2 = fs.readFileSync(__dirname + '/fixtures/quotes2.js', 'utf8');
+	var src3 = fs.readFileSync(__dirname + '/fixtures/quotes4.js', 'utf8');
 
 	TestRun(test)
 		.test(src, { es3: true });
@@ -1201,6 +1202,9 @@ exports.quotes = function (test) {
 	TestRun(test)
 		.addError(2, "Strings must use doublequote.")
 		.test(src, { es3: true, quotmark: 'double' });
+
+	TestRun(test)
+		.test(src3, { es3: true, quotmark: 'single' });
 
 	// test multiple runs (must have the same result)
 	var run = TestRun(test);
